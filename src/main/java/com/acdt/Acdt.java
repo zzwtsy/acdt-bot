@@ -9,14 +9,15 @@ public final class Acdt extends JavaPlugin {
 
     private Acdt() {
         super(new JvmPluginDescriptionBuilder("com.acdt.bot", "0.1.0")
-                .name("acdt")
+                .name("acdt-bot")
                 .info("安徽国防电费提醒机器人")
-                .author("Daydreamer").build());
+                .author("Daydreamer")
+                .build());
     }
 
     @Override
     public void onEnable() {
-        getLogger().info("插件已加载 :)");
+        getLogger().info("acdt-bot loaded :)");
         GlobalEventChannel.INSTANCE.registerListenerHost(new sendInfo());
     }
 }

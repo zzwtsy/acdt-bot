@@ -20,6 +20,9 @@ public class sendInfo extends SimpleListenerHost {
         if (message.equals("#电费")) {
             event.getSender().sendMessage("功能还没写");
         }
+        if(message.equals("#help")){
+            event.getSender().sendMessage("#help：帮助信息\n#电费：发送当前电费余额\n");
+        }
         return ListeningStatus.LISTENING;
     }
 
@@ -34,6 +37,9 @@ public class sendInfo extends SimpleListenerHost {
         message = event.getMessage().contentToString();
         if (message.equals("#电费")) {
             event.getGroup().sendMessage("功能还没写");
+        }
+        if(message.equals("#help")){
+            event.getGroup().sendMessage("#help：帮助信息\n#电费：发送当前电费余额\n");
         }
         return ListeningStatus.LISTENING;
     }
