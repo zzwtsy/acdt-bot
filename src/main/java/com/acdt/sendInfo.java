@@ -8,6 +8,12 @@ import net.mamoe.mirai.event.events.GroupMessageEvent;
 
 public class sendInfo extends SimpleListenerHost {
     String message;
+    /**
+     * 回复个人消息
+     *
+     * @param event 机器人收到的好友消息的事件
+     * @return 继续监听
+     */
     @EventHandler
     private ListeningStatus onEvent(FriendMessageEvent event) {
         message = event.getMessage().contentToString();
@@ -16,6 +22,13 @@ public class sendInfo extends SimpleListenerHost {
         }
         return ListeningStatus.LISTENING;
     }
+
+    /**
+     * 回复群消息
+     *
+     * @param event 机器人收到的群消息的事件
+     * @return 继续监听
+     */
     @EventHandler
     private ListeningStatus onEvent(GroupMessageEvent event) {
         message = event.getMessage().contentToString();
