@@ -19,8 +19,6 @@ jobs:
         
     - name: Build
       run: |
-        ls
-        cd acdt-bot
         chmod +x gradlew
         ./gradlew
         ./gradlew jar
@@ -39,7 +37,7 @@ jobs:
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
-        files: ./acdt-bot/*.jar
+        files: ./*.jar
 
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
