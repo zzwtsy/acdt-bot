@@ -5,6 +5,7 @@ import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder;
 import net.mamoe.mirai.event.GlobalEventChannel;
 
 public final class Acdt extends JavaPlugin {
+    @SuppressWarnings("unused")
     public static final Acdt INSTANCE = new Acdt();
 
     private Acdt() {
@@ -18,6 +19,8 @@ public final class Acdt extends JavaPlugin {
     @Override
     public void onEnable() {
         getLogger().info("acdt-bot loaded :)");
-        GlobalEventChannel.INSTANCE.registerListenerHost(new sendInfo());
+        new GetInfo().getInfo();
+        new TimingTask().sendMessage();
+        GlobalEventChannel.INSTANCE.registerListenerHost(new SendInfo());
     }
 }
