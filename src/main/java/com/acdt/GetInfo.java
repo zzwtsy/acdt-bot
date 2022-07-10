@@ -39,7 +39,7 @@ public class GetInfo {
      */
     public String getInfo() {
         String urlPath = "http://df.acdt.edu.cn/use/record";
-        String cookie = "JSESSIONID=3E6B2916D2A20681A7B73115894B7829";
+        String cookie = "Your cookie";
         String message;
         URL url;
         Document document;
