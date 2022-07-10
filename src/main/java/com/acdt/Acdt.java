@@ -19,8 +19,8 @@ public final class Acdt extends JavaPlugin {
     @Override
     public void onEnable() {
         getLogger().info("acdt-bot loaded :)");
+        GlobalEventChannel.INSTANCE.registerListenerHost(new SendInfo());
         new GetInfo().getInfo();
         new TimingTask().sendMessage();
-        GlobalEventChannel.INSTANCE.registerListenerHost(new SendInfo());
     }
 }
