@@ -9,7 +9,9 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class TimingTask extends SimpleListenerHost {
-
+    /**
+     * 每3小时监测一次电费信息是否小余20度
+     */
     public void sendMessage() {
         ScheduledExecutorService scheduledExecutorService = new ScheduledThreadPoolExecutor(2);
         Runnable runnable = () -> {
