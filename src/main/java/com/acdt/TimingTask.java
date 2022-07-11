@@ -19,7 +19,7 @@ public class TimingTask extends SimpleListenerHost {
             getInfo.getInfo();
             float electricityInformation = Float.parseFloat(getInfo.getElectricityPurchase()) + Float.parseFloat(getInfo.getSubsidy());
             if (electricityInformation <= 20) {
-                Objects.requireNonNull(Bot.getInstances().get(0).getGroup(115604137)).sendMessage("电量不足20度，请及时充值");
+                Objects.requireNonNull(Bot.getInstances().get(0).getGroup(你的群号)).sendMessage("电量不足20度，请及时充值");
             }
         };
         scheduledExecutorService.scheduleAtFixedRate(runnable, 3, 3, TimeUnit.HOURS);
