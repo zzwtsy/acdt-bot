@@ -12,4 +12,4 @@
   String urlPath = "http://df.acdt.edu.cn/use/record";
   String cookie = "JSESSIONID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 ````
-5. 将你的群号填入[此处](https://github.com/zzwtsy/acdt-bot/blob/master/src/main/java/com/acdt/TimingTask.java#L22)
+5. 将你的群号填入[此处](https://github.com/zzwtsy/acdt-bot/blob/cdbb38132b91fea3998d562a98f2fb1262b0ca2d/src/main/java/com/acdt/TimingTask.java#L22)
