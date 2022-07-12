@@ -15,8 +15,6 @@ repositories {
 }
 
 dependencies{
-    // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
-    implementation("org.apache.httpcomponents:httpclient:4.5.13")
     // https://mvnrepository.com/artifact/org.jsoup/jsoup
     implementation("org.jsoup:jsoup:1.15.2")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
