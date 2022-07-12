@@ -5,10 +5,11 @@ import net.mamoe.mirai.event.ListeningStatus;
 import net.mamoe.mirai.event.SimpleListenerHost;
 import net.mamoe.mirai.event.events.GroupMessageEvent;
 
+import static com.acdt.Acdt.botSettings;
+
 public class SendInfo extends SimpleListenerHost {
     GetInfo getInfo = new GetInfo();
     String message;
-    String prefix = acdtBotSettings.INSTANCE.getPrefix();
 
     /**
      * 回复群消息
@@ -19,12 +20,12 @@ public class SendInfo extends SimpleListenerHost {
     @EventHandler
     private ListeningStatus onEvent(GroupMessageEvent event) {
         message = event.getMessage().contentToString();
-        if (message.equals(prefix + "电费")) {
+        if (botSettings.getInfoCommand().equals(message)) {
             //获取电量信息
             new GetInfo().getInfo();
             event.getGroup().sendMessage(getInfo.getInfo());
         }
-        if (message.equals(prefix + "help")) {
+        if (botSettings.getHelpCommand().equals(message)) {
             event.getGroup().sendMessage("#help：帮助信息\n#电费：发送当前电费信息");
         }
         return ListeningStatus.LISTENING;
