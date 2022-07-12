@@ -16,7 +16,6 @@ public class JavaConfigHelper {
         while ((buffer = reader.readLine()) != null) {
             jsonString.append(buffer);
         }
-
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(jsonString.toString(), object);
     }
@@ -30,12 +29,16 @@ public class JavaConfigHelper {
         bw.close();
     }
 
-    public static boolean createConfigFile(String fileName) throws IOException {
+    public static boolean createConfigFile(String fileName)  {
         String filePath = String.format("config/%s/%s.json", fileName, fileName);
         File file = new File(filePath);
         File dir = new File("config/" + fileName);
         if (!file.exists()) {
-            return dir.mkdirs() && file.createNewFile();
+            try {
+                return dir.mkdirs() && file.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
         return false;
     }

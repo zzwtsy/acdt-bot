@@ -1,16 +1,14 @@
 package com.acdt;
 
 import net.mamoe.mirai.event.SimpleListenerHost;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 
+import static com.acdt.Acdt.botSettings;
 import static com.acdt.tools.ToNumberPart.toNumberPart;
 
 public class GetInfo extends SimpleListenerHost {
@@ -41,21 +39,17 @@ public class GetInfo extends SimpleListenerHost {
     public String getInfo() {
         String urlPath = "http://df.acdt.edu.cn/use/record";
         String message;
-        URL url;
         Document document;
-        StringBuilder stringBuilder;
+        Connection connection;
         try {
-            url = new URL(urlPath);
-            URLConnection conn = url.openConnection();
-            conn.setRequestProperty("Cookie", acdtBotSettings.INSTANCE.getCookie());
-            conn.setDoInput(true);
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            stringBuilder = new StringBuilder();
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                stringBuilder.append(line);
+            try {
+                connection = Jsoup.connect(urlPath).timeout(3000);
+            } catch (Exception e) {
+                throw new RuntimeException("连接超时");
             }
-            document = Jsoup.parse(String.valueOf(stringBuilder));
+            connection.header("Cookie", botSettings.getCookie());
+//            connection.header("User-Agent", "mozilla/5.0 (linux; android 12; m2012k11ac build/skq1.211006.001; wv) applewebkit/537.36 (khtml, like gecko) version/4.0 chrome/86.0.4240.99 xweb/4263 mmwebsdk/20220604 mobile safari/537.36 mmwebid/8194 micromessenger/8.0.24.2180(0x28001879) wechat/arm64 weixin nettype/wifi language/zh_cn abi/arm64");
+            document = connection.get();
             Elements select = document.getElementsByClass("item-after");
             //获取剩余购电
             electricityPurchase = toNumberPart(select.get(0).text());
