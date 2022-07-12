@@ -29,7 +29,8 @@ public class JavaConfigHelper {
         bw.close();
     }
 
-    public static boolean createConfigFile(String fileName)  {
+    @SuppressWarnings("all")
+    public static boolean createConfigFile(String fileName) {
         String filePath = String.format("config/%s/%s.json", fileName, fileName);
         File file = new File(filePath);
         File dir = new File("config/" + fileName);
