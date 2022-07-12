@@ -7,7 +7,8 @@ import net.mamoe.mirai.event.events.GroupMessageEvent;
 
 public class SendInfo extends SimpleListenerHost {
     GetInfo getInfo = new GetInfo();
-    String message ;
+    String message;
+    String prefix = acdtBotSettings.INSTANCE.getPrefix();
 
     /**
      * 回复群消息
@@ -18,12 +19,12 @@ public class SendInfo extends SimpleListenerHost {
     @EventHandler
     private ListeningStatus onEvent(GroupMessageEvent event) {
         message = event.getMessage().contentToString();
-        if (message.equals("#电费")) {
+        if (message.equals(prefix + "电费")) {
             //获取电量信息
             new GetInfo().getInfo();
             event.getGroup().sendMessage(getInfo.getInfo());
         }
-        if (message.equals("#help")) {
+        if (message.equals(prefix + "help")) {
             event.getGroup().sendMessage("#help：帮助信息\n#电费：发送当前电费信息");
         }
         return ListeningStatus.LISTENING;

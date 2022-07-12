@@ -1,5 +1,6 @@
 package com.acdt;
 
+import net.mamoe.mirai.event.SimpleListenerHost;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -12,7 +13,7 @@ import java.net.URLConnection;
 
 import static com.acdt.tools.ToNumberPart.toNumberPart;
 
-public class GetInfo {
+public class GetInfo extends SimpleListenerHost {
     //剩余购电
     String electricityPurchase;
     //剩余补助
@@ -39,7 +40,6 @@ public class GetInfo {
      */
     public String getInfo() {
         String urlPath = "http://df.acdt.edu.cn/use/record";
-        String cookie = "Your cookie";
         String message;
         URL url;
         Document document;
@@ -47,7 +47,7 @@ public class GetInfo {
         try {
             url = new URL(urlPath);
             URLConnection conn = url.openConnection();
-            conn.setRequestProperty("Cookie", cookie);
+            conn.setRequestProperty("Cookie", acdtBotSettings.INSTANCE.getCookie());
             conn.setDoInput(true);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             stringBuilder = new StringBuilder();
