@@ -1,4 +1,4 @@
-name: Build Grasscutter
+name: Build acdt-bot
 
 on:
   repository_dispatch:
