@@ -8,6 +8,9 @@ import net.mamoe.mirai.event.GlobalEventChannel;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * @author Daydreamer
+ */
 public final class Acdt extends JavaPlugin {
     @SuppressWarnings("unused")
     public static final Acdt INSTANCE = new Acdt();
@@ -24,13 +27,14 @@ public final class Acdt extends JavaPlugin {
     @Override
     public void onEnable() {
         getLogger().info("acdt-bot loaded successfully :)");
-        File file = new File("config/acdtBotSettings/acdtBotSettings.json");
+        File file = new File("config/com.acdt.bot/acdt-Bot.json");
         if (file.exists()) {
             try {
                 // 从本地文件加载配置项到内存
-                botSettings = JavaConfigHelper.getConfigFromFile("acdtBotSettings", acdtBotSettings.class);
+                botSettings = JavaConfigHelper.getConfigFromFile("com.acdt.bot", "acdt-Bot", acdtBotSettings.class);
                 getLogger().info("Config file loaded successfully");
             } catch (IOException e) {
+                getLogger().error("加载配置文件时发生错误");
                 getLogger().error("Filed to load configuration file");
                 getLogger().error(e);
             }
@@ -45,10 +49,14 @@ public final class Acdt extends JavaPlugin {
             acdtBotSettings.INSTANCE.setThreshold(20);
             try {
                 // 创建本地配置文件
-                JavaConfigHelper.createConfigFile("acdtBotSettings");
+                JavaConfigHelper.createConfigFile("com.acdt.bot", "acdt-Bot");
                 // 将配置类写入到本地配置文件
-                JavaConfigHelper.setConfigFile("acdtBotSettings", acdtBotSettings.INSTANCE);
+                JavaConfigHelper.setConfigFile("com.acdt.bot", "acdt-Bot", acdtBotSettings.INSTANCE);
+                getLogger().warning("请修改配置文件后再次启动");
+                getLogger().warning("Modify the configuration file and start it again");
+                return;
             } catch (IOException e) {
+                getLogger().error("生成配置文件时发生错误");
                 getLogger().error("Config file create failed");
                 getLogger().error(e);
             }
@@ -57,5 +65,11 @@ public final class Acdt extends JavaPlugin {
         new GetInfo().getInfo();
         //定时任务
         new TimingTask().sendMessage();
+    }
+
+    @Override
+    public void onDisable() {
+        getLogger().info("acdt-Bot 插件已关闭");
+        getLogger().info("acdt-Bot plugin is stop");
     }
 }
