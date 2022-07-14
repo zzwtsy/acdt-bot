@@ -10,6 +10,9 @@ import java.util.concurrent.TimeUnit;
 
 import static com.acdt.Acdt.botSettings;
 
+/**
+ * @author Daydreamer
+ */
 public class TimingTask extends SimpleListenerHost {
     /**
      * 定时监测电费信息是否小余设定的值

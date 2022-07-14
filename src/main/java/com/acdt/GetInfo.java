@@ -11,6 +11,9 @@ import java.io.IOException;
 import static com.acdt.Acdt.botSettings;
 import static com.acdt.tools.ToNumberPart.toNumberPart;
 
+/**
+ * @author Daydreamer
+ */
 public class GetInfo extends SimpleListenerHost {
     //剩余购电
     String electricityPurchase;
@@ -36,9 +39,8 @@ public class GetInfo extends SimpleListenerHost {
     /**
      * 获取电量信息
      */
-    public String getInfo() {
+    public void getInfo() {
         String urlPath = "http://df.acdt.edu.cn/use/record";
-        String message;
         Document document;
         Connection connection;
         try {
@@ -48,7 +50,7 @@ public class GetInfo extends SimpleListenerHost {
                 throw new RuntimeException("连接超时");
             }
             connection.header("Cookie", botSettings.getCookie());
-//            connection.header("User-Agent", "mozilla/5.0 (linux; android 12; m2012k11ac build/skq1.211006.001; wv) applewebkit/537.36 (khtml, like gecko) version/4.0 chrome/86.0.4240.99 xweb/4263 mmwebsdk/20220604 mobile safari/537.36 mmwebid/8194 micromessenger/8.0.24.2180(0x28001879) wechat/arm64 weixin nettype/wifi language/zh_cn abi/arm64");
+            connection.header("User-Agent", "mozilla/5.0 (linux; android 12; m2012k11ac build/skq1.211006.001; wv) applewebkit/537.36 (khtml, like gecko) version/4.0 chrome/86.0.4240.99 xweb/4263 mmwebsdk/20220604 mobile safari/537.36 mmwebid/8194 micromessenger/8.0.24.2180(0x28001879) wechat/arm64 weixin nettype/wifi language/zh_cn abi/arm64");
             document = connection.get();
             Elements select = document.getElementsByClass("item-after");
             //获取剩余购电
@@ -57,10 +59,8 @@ public class GetInfo extends SimpleListenerHost {
             subsidy = toNumberPart(select.get(1).text());
             //获取昨日用电
             electricityConsumption = toNumberPart(select.get(2).text());
-            message = "剩余购电:" + electricityPurchase + "度\n剩余补助:" + subsidy + "度\n昨日用电:" + electricityConsumption + "度";
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return message;
     }
 }

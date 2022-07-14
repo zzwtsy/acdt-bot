@@ -4,9 +4,13 @@ import net.mamoe.mirai.event.EventHandler;
 import net.mamoe.mirai.event.ListeningStatus;
 import net.mamoe.mirai.event.SimpleListenerHost;
 import net.mamoe.mirai.event.events.GroupMessageEvent;
+import org.jetbrains.annotations.NotNull;
 
 import static com.acdt.Acdt.botSettings;
 
+/**
+ * @author Daydreamer
+ */
 public class SendInfo extends SimpleListenerHost {
     GetInfo getInfo = new GetInfo();
     String message;
@@ -18,15 +22,15 @@ public class SendInfo extends SimpleListenerHost {
      * @return 继续监听
      */
     @EventHandler
-    private ListeningStatus onEvent(GroupMessageEvent event) {
+    private ListeningStatus onEvent(@NotNull GroupMessageEvent event) {
         message = event.getMessage().contentToString();
-        if (botSettings.getInfoCommand().equals(message)) {
+        if (message.equals(botSettings.getInfoCommand())) {
             //获取电量信息
-            new GetInfo().getInfo();
-            event.getGroup().sendMessage(getInfo.getInfo());
+            getInfo.getInfo();
+            event.getGroup().sendMessage("剩余购电:" + getInfo.electricityPurchase + "度\n剩余补助:" + getInfo.subsidy + "度\n昨日用电:" + getInfo.electricityConsumption + "度");
         }
-        if (botSettings.getHelpCommand().equals(message)) {
-            event.getGroup().sendMessage("#help：帮助信息\n#电费：发送当前电费信息");
+        if (message.equals(botSettings.getHelpCommand())) {
+            event.getGroup().sendMessage(botSettings.getHelpCommand() + ":获取帮助信息\n" + botSettings.getInfoCommand() + "：发送当前电费信息");
         }
         return ListeningStatus.LISTENING;
     }
