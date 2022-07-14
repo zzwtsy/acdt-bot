@@ -1,6 +1,9 @@
 name: Build acdt-bot
 
 on:
+  push:
+    tags:
+      - 'v*.*.*'
   repository_dispatch:
   workflow_dispatch:
 
@@ -26,9 +29,9 @@ jobs:
     - name: Generate release tag
       id: tag
       run: |
-        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
+        echo "::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}"
         touch release.txt
-        echo "$(date +"%Y.%m.%d-%H%M")" >> release.txt
+        echo "$(cat ReleaseInfo.md)" >> release.txt
         
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
