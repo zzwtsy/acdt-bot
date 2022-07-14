@@ -1,4 +1,4 @@
-package com.acdt.tools;
+package cn.edu.acdt.tools;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

@@ -1,12 +1,10 @@
-package com.acdt;
+package cn.edu.acdt;
 
 import net.mamoe.mirai.event.EventHandler;
 import net.mamoe.mirai.event.ListeningStatus;
 import net.mamoe.mirai.event.SimpleListenerHost;
 import net.mamoe.mirai.event.events.GroupMessageEvent;
 import org.jetbrains.annotations.NotNull;
-
-import static com.acdt.Acdt.botSettings;
 
 /**
  * @author Daydreamer
@@ -24,13 +22,13 @@ public class SendInfo extends SimpleListenerHost {
     @EventHandler
     private ListeningStatus onEvent(@NotNull GroupMessageEvent event) {
         message = event.getMessage().contentToString();
-        if (message.equals(botSettings.getInfoCommand())) {
+        if (message.equals(Acdt.botSettings.getInfoCommand())) {
             //获取电量信息
             getInfo.getInfo();
             event.getGroup().sendMessage("剩余购电:" + getInfo.electricityPurchase + "度\n剩余补助:" + getInfo.subsidy + "度\n昨日用电:" + getInfo.electricityConsumption + "度");
         }
-        if (message.equals(botSettings.getHelpCommand())) {
-            event.getGroup().sendMessage(botSettings.getHelpCommand() + ":获取帮助信息\n" + botSettings.getInfoCommand() + "：发送当前电费信息");
+        if (message.equals(Acdt.botSettings.getHelpCommand())) {
+            event.getGroup().sendMessage(Acdt.botSettings.getHelpCommand() + ":获取帮助信息\n" + Acdt.botSettings.getInfoCommand() + "：发送当前电费信息");
         }
         return ListeningStatus.LISTENING;
     }

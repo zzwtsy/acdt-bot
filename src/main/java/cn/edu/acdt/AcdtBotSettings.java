@@ -1,22 +1,37 @@
-package com.acdt;
+package cn.edu.acdt;
 
-public class acdtBotSettings {
-    public static final acdtBotSettings INSTANCE = new acdtBotSettings();
-    //qq群号
+/**
+ * @author Daydreamer
+ */
+public class AcdtBotSettings {
+    public static final AcdtBotSettings INSTANCE = new AcdtBotSettings();
+    /**
+     * qq群号
+     */
     long groupId;
-    //机器人qq号
+    /**
+     * 机器人qq号
+     */
     long botId;
-    //检测电费的时间间隔（小时）
+    /**
+     * 检测电费的时间间隔（小时）
+     */
     int taskTime;
-    //电费预警值
+    /**
+     * 电费预警值
+     */
     int threshold;
     String cookie;
-    //获取信息的指令
+    /**
+     * 获取信息的指令
+     */
     String infoCommand;
-    //获取帮助的指令
+    /**
+     * 获取帮助的指令
+     */
     String helpCommand;
 
-    private acdtBotSettings() {
+    private AcdtBotSettings() {
     }
 
     public int getThreshold() {

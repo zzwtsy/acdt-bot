@@ -1,14 +1,13 @@
-package com.acdt;
+package cn.edu.acdt;
 
 import net.mamoe.mirai.Bot;
 import net.mamoe.mirai.event.SimpleListenerHost;
 
 import java.util.Objects;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import static com.acdt.Acdt.botSettings;
+import static cn.edu.acdt.Acdt.botSettings;
 
 /**
  * @author Daydreamer
@@ -18,7 +17,6 @@ public class TimingTask extends SimpleListenerHost {
      * 定时监测电费信息是否小余设定的值
      */
     public void sendMessage() {
-        ScheduledExecutorService scheduledExecutorService = new ScheduledThreadPoolExecutor(1);
         Runnable runnable = () -> {
             GetInfo getInfo = new GetInfo();
             getInfo.getInfo();
@@ -28,6 +26,6 @@ public class TimingTask extends SimpleListenerHost {
             }
         };
         long time = botSettings.getTaskTime();
-        scheduledExecutorService.scheduleAtFixedRate(runnable, time, time, TimeUnit.HOURS);
+        new ScheduledThreadPoolExecutor(1).scheduleAtFixedRate(runnable, time, time, TimeUnit.SECONDS);
     }
 }

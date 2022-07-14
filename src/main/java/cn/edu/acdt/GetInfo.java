@@ -1,4 +1,4 @@
-package com.acdt;
+package cn.edu.acdt;
 
 import net.mamoe.mirai.event.SimpleListenerHost;
 import org.jsoup.Connection;
@@ -8,18 +8,24 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
-import static com.acdt.Acdt.botSettings;
-import static com.acdt.tools.ToNumberPart.toNumberPart;
+import static cn.edu.acdt.Acdt.botSettings;
+import static cn.edu.acdt.tools.ToNumberPart.toNumberPart;
 
 /**
  * @author Daydreamer
  */
 public class GetInfo extends SimpleListenerHost {
-    //剩余购电
+    /**
+     * 剩余购电
+     */
     String electricityPurchase;
-    //剩余补助
+    /**
+     * 剩余补助
+     */
     String subsidy;
-    //昨日用电
+    /**
+     * 昨日用电
+     */
     String electricityConsumption;
 
     /**

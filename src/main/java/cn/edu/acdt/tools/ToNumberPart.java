@@ -1,4 +1,4 @@
-package com.acdt.tools;
+package cn.edu.acdt.tools;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -17,8 +17,9 @@ public class ToNumberPart {
      */
     public static String toNumberPart(@NotNull String str) {
         String content = str.trim();
-        Pattern p = Pattern.compile("([-+])?\\d+(\\.\\d+)?");
-        Matcher matcher = p.matcher(content);
+        String patternString = "([-+])?\\d+(\\.\\d+)?";
+        Pattern pattern = Pattern.compile(patternString);
+        Matcher matcher = pattern.matcher(content);
         return matcher.find() ? matcher.group(0) : "";
     }
 }
