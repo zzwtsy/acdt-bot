@@ -26,6 +26,6 @@ public class TimingTask extends SimpleListenerHost {
             }
         };
         long time = botSettings.getTaskTime();
-        new ScheduledThreadPoolExecutor(1).scheduleAtFixedRate(runnable, time, time, TimeUnit.SECONDS);
+        new ScheduledThreadPoolExecutor(1).scheduleAtFixedRate(runnable, time, time, TimeUnit.HOURS);
     }
 }
