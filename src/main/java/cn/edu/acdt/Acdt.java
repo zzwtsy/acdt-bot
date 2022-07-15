@@ -39,6 +39,7 @@ public final class Acdt extends JavaPlugin {
                 getLogger().error(e);
             }
         } else {
+            //初始化配置文件
             getLogger().info("No config file found, create a new config file");
             AcdtBotSettings.INSTANCE.setGroupId(0);
             AcdtBotSettings.INSTANCE.setBotId(0);
