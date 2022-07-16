@@ -21,6 +21,9 @@ public class AcdtBotSettings {
      * 电费预警值
      */
     int threshold;
+    /**
+     * 网站Cookie
+     */
     String cookie;
     /**
      * 获取信息的指令
