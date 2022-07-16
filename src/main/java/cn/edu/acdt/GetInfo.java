@@ -66,7 +66,7 @@ public class GetInfo extends SimpleListenerHost {
             //获取昨日用电
             electricityConsumption = toNumberPart(select.get(2).text());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("获取电量信息失败");
         }
     }
 }
