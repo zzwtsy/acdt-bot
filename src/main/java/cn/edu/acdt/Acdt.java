@@ -14,10 +14,10 @@ import java.io.IOException;
 public final class Acdt extends JavaPlugin {
     @SuppressWarnings("unused")
     public static final Acdt INSTANCE = new Acdt();
-    public static AcdtBotSettings botSettings;
+    public static AcdtBotConfig botSettings;
 
     private Acdt() {
-        super(new JvmPluginDescriptionBuilder("com.acdt.bot", "0.1.0")
+        super(new JvmPluginDescriptionBuilder("cn.edu.acdt.bot", "0.1.0")
                 .name("acdt-bot")
                 .info("安徽国防电费提醒机器人")
                 .author("Daydreamer")
@@ -27,11 +27,11 @@ public final class Acdt extends JavaPlugin {
     @Override
     public void onEnable() {
         getLogger().info("acdt-bot loaded successfully :)");
-        File file = new File("config/com.acdt.bot/acdt-Bot.json");
+        File file = new File("config/cn.edu.acdt.bot/acdt-Bot.json");
         if (file.exists()) {
             try {
                 // 从本地文件加载配置项到内存
-                botSettings = JavaConfigHelper.getConfigFromFile("com.acdt.bot", "acdt-Bot", AcdtBotSettings.class);
+                botSettings = JavaConfigHelper.getConfigFromFile("cn.edu.acdt.bot", "acdt-Bot", AcdtBotConfig.class);
                 getLogger().info("Config file loaded successfully");
             } catch (IOException e) {
                 getLogger().error("加载配置文件时发生错误");
@@ -40,19 +40,27 @@ public final class Acdt extends JavaPlugin {
             }
         } else {
             //初始化配置文件
+            getLogger().info("没有找到配置文件,正在生成配置文件");
             getLogger().info("No config file found, create a new config file");
-            AcdtBotSettings.INSTANCE.setGroupId(0);
-            AcdtBotSettings.INSTANCE.setBotId(0);
-            AcdtBotSettings.INSTANCE.setHelpCommand("#help");
-            AcdtBotSettings.INSTANCE.setInfoCommand("#电费");
-            AcdtBotSettings.INSTANCE.setCookie("你的cookie");
-            AcdtBotSettings.INSTANCE.setTaskTime(3);
-            AcdtBotSettings.INSTANCE.setThreshold(20);
+            AcdtBotConfig.INSTANCE.setTips("groupId:你的QQ群号||" +
+                    "botId:你的机器人QQ号||" +
+                    "threshold:电费预警值（当电费小于此值时机器人发送缴费信息）||" +
+                    "taskTime:机器人检测剩余电费时间间隔，单位小时||" +
+                    "cookie:网站cookie||" +
+                    "helpCommand:获取插件帮助信息指令||" +
+                    "infoCommand:获取当前电费信息的指令");
+            AcdtBotConfig.INSTANCE.setGroupId(0);
+            AcdtBotConfig.INSTANCE.setBotId(0);
+            AcdtBotConfig.INSTANCE.setHelpCommand("#help");
+            AcdtBotConfig.INSTANCE.setInfoCommand("#电费");
+            AcdtBotConfig.INSTANCE.setCookie("你的cookie");
+            AcdtBotConfig.INSTANCE.setTaskTime(3);
+            AcdtBotConfig.INSTANCE.setThreshold(20);
             try {
                 // 创建本地配置文件
-                JavaConfigHelper.createConfigFile("com.acdt.bot", "acdt-Bot");
+                JavaConfigHelper.createConfigFile("cn.edu.acdt.bot", "acdt-Bot");
                 // 将配置类写入到本地配置文件
-                JavaConfigHelper.setConfigFile("com.acdt.bot", "acdt-Bot", AcdtBotSettings.INSTANCE);
+                JavaConfigHelper.setConfigFile("cn.edu.acdt.bot", "acdt-Bot", AcdtBotConfig.INSTANCE);
                 getLogger().warning("请修改配置文件后再次启动");
                 getLogger().warning("Modify the configuration file and start it again");
                 return;
