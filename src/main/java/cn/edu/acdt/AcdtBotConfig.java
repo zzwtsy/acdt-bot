@@ -3,8 +3,13 @@ package cn.edu.acdt;
 /**
  * @author Daydreamer
  */
-public class AcdtBotSettings {
-    public static final AcdtBotSettings INSTANCE = new AcdtBotSettings();
+public class AcdtBotConfig {
+    public static final AcdtBotConfig INSTANCE = new AcdtBotConfig();
+    /**
+     * 配置文件提示
+     */
+    String tips;
+
     /**
      * qq群号
      */
@@ -34,7 +39,15 @@ public class AcdtBotSettings {
      */
     String helpCommand;
 
-    private AcdtBotSettings() {
+    private AcdtBotConfig() {
+    }
+
+    public String getTips() {
+        return tips;
+    }
+
+    public void setTips(String tips) {
+        this.tips = tips;
     }
 
     public int getThreshold() {
