@@ -43,13 +43,13 @@ public final class Acdt extends JavaPlugin {
             //初始化配置文件
             getLogger().info("没有找到配置文件,正在生成配置文件");
             getLogger().info("No config file found, create a new config file");
-            AcdtBotConfig.INSTANCE.setTips("groupId:你的QQ群号||" +
-                    "botId:你的机器人QQ号||" +
-                    "threshold:电费预警值（当电费小于此值时机器人发送缴费信息）||" +
-                    "taskTime:机器人检测剩余电费时间间隔，单位小时||" +
-                    "cookie:网站cookie||" +
-                    "helpCommand:获取插件帮助信息指令||" +
-                    "infoCommand:获取当前电费信息的指令");
+            AcdtBotConfig.INSTANCE.setTips("\ngroupId:你的QQ群号||" +
+                    "\nbotId:你的机器人QQ号||" +
+                    "\nthreshold:电费预警值（当电费小于此值时机器人发送缴费信息）||" +
+                    "\ntaskTime:机器人检测剩余电费时间间隔，单位小时||" +
+                    "\ncookie:网站cookie||" +
+                    "\nhelpCommand:获取插件帮助信息指令||" +
+                    "\ninfoCommand:获取当前电费信息的指令");
             AcdtBotConfig.INSTANCE.setGroupId(0);
             AcdtBotConfig.INSTANCE.setBotId(0);
             AcdtBotConfig.INSTANCE.setHelpCommand("#help");
