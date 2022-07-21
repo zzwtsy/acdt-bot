@@ -56,6 +56,7 @@ public class GetInfo extends SimpleListenerHost {
                 throw new RuntimeException("连接超时");
             }
             connection.header("Cookie", botSettings.getCookie());
+            //此处cookie不添加也可以获取网页内容，以防万一添加一下
             connection.header("User-Agent", "mozilla/5.0 (linux; android 12; m2012k11ac build/skq1.211006.001; wv) applewebkit/537.36 (khtml, like gecko) version/4.0 chrome/86.0.4240.99 xweb/4263 mmwebsdk/20220604 mobile safari/537.36 mmwebid/8194 micromessenger/8.0.24.2180(0x28001879) wechat/arm64 weixin nettype/wifi language/zh_cn abi/arm64");
             document = connection.get();
             Elements select = document.getElementsByClass("item-after");
