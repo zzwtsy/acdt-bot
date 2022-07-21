@@ -1,5 +1,6 @@
 package cn.edu.acdt;
 
+import cn.edu.acdt.tools.AcdtBotConfig;
 import cn.edu.acdt.tools.JavaConfigHelper;
 import net.mamoe.mirai.console.plugin.jvm.JavaPlugin;
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder;

@@ -1,4 +1,4 @@
-package cn.edu.acdt;
+package cn.edu.acdt.tools;
 
 /**
  * @author Daydreamer
