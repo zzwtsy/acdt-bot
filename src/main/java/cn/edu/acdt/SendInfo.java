@@ -1,6 +1,5 @@
 package cn.edu.acdt;
 
-import cn.edu.acdt.tools.AcdtBotConfig;
 import net.mamoe.mirai.event.EventHandler;
 import net.mamoe.mirai.event.ListeningStatus;
 import net.mamoe.mirai.event.SimpleListenerHost;
